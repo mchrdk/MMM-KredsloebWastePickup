@@ -1,12 +1,12 @@
 {
   "name": "MMM-KredsloebWastePickup",
   "version": "1.0.0",
-  "description": "A module to show the next waste pickup dates for any address in Oslo, Norway",
-  "main": "MMM-Avfallshenting.js",
+  "description": "A module to show the next waste pickup dates for any address in Aarhus Denmark",
+  "main": "MMM-KredsloebWastePickup",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Øystein Blixhavn",
+  "author": "Michael Amadeus Christiansen",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
