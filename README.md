@@ -1,6 +1,6 @@
 # MMM-KredsloebWastePickup
 
-This is a module for [MagicMirror²](https://magicmirror.builders/) to show the next waste pickup dates for any address in Oslo, Norway. It gets the dates by scraping the [municipal lookup service](https://www.oslo.kommune.no/avfall-og-gjenvinning/avfallshenting/). All of the information on the board can be configured, ensuring you can get the exact look you want.
+This is a module for [MagicMirror²](https://magicmirror.builders/) to show the next waste pickup dates for any address in Aarhus Denmark It gets the dates by scraping the [kredsløb lookup service](https://www.oslo.kommune.no/avfall-og-gjenvinning/avfallshenting/). All of the information on the board can be configured, ensuring you can get the exact look you want.
 
 
 <img src="./img/examples.jpg">
@@ -13,7 +13,7 @@ Enter your MagicMirror² module folder, e.g.:
 
 Clone the repository
 
-    git clone https://github.com/blixhavn/MMM-KredsloebWastePickup.git
+    git clone https://https://github.com/mchrdk/MMM-WasteScheduleKredsloeb.git
 
 Install the dependencies
 
@@ -26,7 +26,7 @@ Add the module to your configuration file, for instance:
         module: "MMM-KredsloebWastePickup",
         position: "top_right",
         config: {
-            address: "Maridalsveien 52",
+            address: "youraddresshere",
             dateFormat: "dddd Do MMM",
             useHumanFormat: "by_week",
             showHeader: false,
@@ -34,7 +34,7 @@ Add the module to your configuration file, for instance:
             refresh: 3600,
             displayIcons: true,
             displayWasteType: false,
-            exclusions: ["Restavfall", "Restavfall til forbrenning"],
+            exclusions: ["glas", "Plastik"],
 
         }
     },
@@ -50,7 +50,7 @@ Add the module to your configuration file, for instance:
 | showHeader     | Boolean for whether or not to display header for the module (see example in image above) | false                            |
 | updateSpeed                 | Transition speed when updating the display (in milliseconds).                                                                                                                                                                                 | 1000                      |
 | refresh        | Refresh interval for polling the website for new information (in seconds).                                                                                                                      | 3600                             |
-| displayIcons          | Boolean for whether or not to display waste icons. Uses the [official waste icons](https://sortere.no/avfallssymboler) for Norway.                                                                                                                          | true                             |
+| displayIcons          | Boolean for whether or not to display waste icons. Uses the FontAwesome icons, might be incomplete.                                                                                                                          | true                             |
 | displayWasteType          | Boolean for whether or not to display waste type text.                                                                                                             | false                             |
 | exclusions          | List for waste types to exclude from the list. Needs to match the exact text, but is case insensitive.                                                                                                            | []                             |
 
@@ -63,4 +63,4 @@ If you have any feedback, questions or suggestions, do not hesitate to make an i
 MMM-KredsloebWastePickup is released under the MIT license. Have at it.
 
 -----
-Made by Øystein Blixhavn
+Made by Øystein Blixhavn, forked and redeveloped by Michael Amadeus Christiansen
