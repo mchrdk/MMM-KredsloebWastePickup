@@ -1,4 +1,4 @@
-# MMM-AvfallshentingOslo
+# MMM-KredsloebWastePickup
 
 This is a module for [MagicMirror²](https://magicmirror.builders/) to show the next waste pickup dates for any address in Oslo, Norway. It gets the dates by scraping the [municipal lookup service](https://www.oslo.kommune.no/avfall-og-gjenvinning/avfallshenting/). All of the information on the board can be configured, ensuring you can get the exact look you want.
 
@@ -13,17 +13,17 @@ Enter your MagicMirror² module folder, e.g.:
 
 Clone the repository
 
-    git clone https://github.com/blixhavn/MMM-AvfallshentingOslo.git
+    git clone https://github.com/blixhavn/MMM-KredsloebWastePickup.git
 
 Install the dependencies
 
-    cd MMM-AvfallshentingOslo
+    cd MMM-KredsloebWastePickup
     npm install
 
 Add the module to your configuration file, for instance:
 
     {
-        module: "MMM-AvfallshentingOslo",
+        module: "MMM-KredsloebWastePickup",
         position: "top_right",
         config: {
             address: "Maridalsveien 52",
@@ -60,7 +60,7 @@ If you have any feedback, questions or suggestions, do not hesitate to make an i
 
 
 ## License 
-MMM-AvfallshentingOslo is released under the MIT license. Have at it.
+MMM-KredsloebWastePickup is released under the MIT license. Have at it.
 
 -----
 Made by Øystein Blixhavn

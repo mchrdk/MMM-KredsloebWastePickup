@@ -1,25 +1,32 @@
-.MMM-AvfallshentingOslo .icon {
-    width: 3rem;
-    margin-right: 0.2rem;
-}
-
-.MMM-AvfallshentingOslo .module-content {
-    display: flex;
-    justify-content: center;
-}
-
-.region.right .MMM-AvfallshentingOslo .module-content {
-    justify-content: flex-end;
-}
-
-.region.left .MMM-AvfallshentingOslo .module-content {
-    justify-content: flex-start;
-}
-
-.MMM-AvfallshentingOslo .date:first-letter  {
-    text-transform: uppercase;
-}
-
-.MMM-AvfallshentingOslo .trashType {
-    padding-right: 1rem;
-}
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+  
+  .MMM-KredsloebWastePickup .icon {
+      width: 3rem;
+      margin-right: 0.2rem;
+      color: #fff; /* Use #000 for light theme */
+  }
+  
+  .MMM-KredsloebWastePickup .module-content {
+      display: flex;
+      justify-content: center;
+      font-size: 24px; /* Medium size */
+      font-weight: 300; /* Light weight */
+      color: #fff; /* Use #000 for light theme */
+  }
+  
+  .region.right .MMM-KredsloebWastePickup .module-content {
+      justify-content: flex-end;
+  }
+  
+  .region.left .MMM-KredsloebWastePickup .module-content {
+      justify-content: flex-start;
+  }
+    
+  .MMM-KredsloebWastePickup .trashType {
+      padding-right: 1rem;
+      font-size: 16px; /* Small size */
+      font-weight: 300; /* Light weight */
+      color: #fff; /* Use #000 for light theme */
+  }

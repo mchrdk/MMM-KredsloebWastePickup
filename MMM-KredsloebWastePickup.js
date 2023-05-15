@@ -1,6 +1,6 @@
-Module.register("MMM-AvfallshentingOslo", {
+Module.register("MMM-KredsloebWastePickup", {
     defaults: {
-		address: "Maridalsveien 52",
+		address: "",
 		dateFormat: "dddd Do MMM",
 		useHumanFormat: "by_week", // Accepts "strict" and "by_week"
 		showHeader: true,
@@ -8,7 +8,7 @@ Module.register("MMM-AvfallshentingOslo", {
 		refresh: 3600,
 		displayIcons: true,
 		displayWasteType: false,
-		exclusions: ["Restavfall"],
+		exclusions: [""],
     },
 
     getScripts: function() {
@@ -21,7 +21,7 @@ Module.register("MMM-AvfallshentingOslo", {
 	
     getTranslations: function() {
         return {
-            nb: "translations/nb.json",
+			da: "translations/da.json",
             en: "translations/en.json"
         };
     },
@@ -42,35 +42,52 @@ Module.register("MMM-AvfallshentingOslo", {
 		this.sendSocketNotification("GET_PICKUP_DATES", this.config.address);
 	},
 
-	getImage: function(wasteType) {
-		src = "/modules/MMM-AvfallshentingOslo/img/"
-		switch(wasteType) {
-			case 'Restavfall':
-				src += "restavfall.svg";
+	getIcon: function(wasteType) {
+		const wasteTypeNormalized = wasteType.toLowerCase().replace(/ /g, '-');
+		let iconName;
+	
+		// mapping waste types to Font Awesome icons
+		switch (wasteTypeNormalized) {
+			case 'plastic':
+				iconName = 'fa-recycle';
 				break;
-			case "Restavfall til forbrenning":
-				src += "brennbar-rest.jpg";
+			case 'plast':
+				iconName = 'fa-recycle';
 				break;
-			case "Papir":
-				src += "papir.svg";
+			case 'glass':
+				iconName = 'fa-recycle';
 				break;
+			case 'restaffald':
+				iconName = 'fa-trash';
+				break;
+			case 'error':
+				iconName = 'fa-exclamation-triangle'; // Error icon when wasteType is 'error'
+				break;
+			// Add more cases as necessary
+			default:
+				console.log(wasteTypeNormalized);
+				iconName = 'fa-question'; // Default icon if no match is found
 		}
-		let icon = document.createElement("img");
-		icon.src = src;
-		icon.className += ' icon';
+	
+		let icon = document.createElement("i");
+		icon.className += `fa ${iconName} icon`;
 		return icon;
 	},
+	
 
 	getDateString: function(date) {
 		const dateObj = moment(date);
 		const currentDate = moment();
 		const isToday = dateObj.isSame(currentDate, 'days');
 		const isTomorrow = dateObj.diff(currentDate.startOf('day'), 'days') == 1;
-
+		const isDayAfterTomorrow = dateObj.diff(currentDate.startOf('day'), 'days') == 2;
 		if(isToday) {
+			console.log(this.translate("test"));
 			return this.translate("today");
 		} else if(isTomorrow) {
 			return this.translate("tomorrow");
+		} else if(isDayAfterTomorrow) {
+			return this.translate("dayaftertomorrow");
 		} else if(this.config.useHumanFormat == "by_week") {
 			const weeksUntil = dateObj.week() - currentDate.week();
 			if(weeksUntil === 0) {
@@ -127,7 +144,7 @@ Module.register("MMM-AvfallshentingOslo", {
 					row.className += "medium";
 					if(this.config.displayIcons) {
 						let cell = document.createElement("td");
-						cell.appendChild(this.getImage(wasteType))
+						cell.appendChild(this.getIcon(wasteType))
 						row.appendChild(cell);
 					}
 					if(this.config.displayWasteType) {
