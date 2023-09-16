@@ -42,37 +42,33 @@ Module.register("MMM-KredsloebWastePickup", {
 		this.sendSocketNotification("GET_PICKUP_DATES", this.config.address);
 	},
 
-	getIcon: function(wasteType) {
-		const wasteTypeNormalized = wasteType.toLowerCase().replace(/ /g, '-');
-		let iconName;
-	
-		// mapping waste types to Font Awesome icons
-		switch (wasteTypeNormalized) {
-			case 'plastic':
-				iconName = 'fa-recycle';
-				break;
-			case 'plast':
-				iconName = 'fa-recycle';
-				break;
-			case 'glass':
-				iconName = 'fa-recycle';
-				break;
-			case 'restaffald':
-				iconName = 'fa-trash';
-				break;
-			case 'error':
-				iconName = 'fa-exclamation-triangle'; // Error icon when wasteType is 'error'
-				break;
-			// Add more cases as necessary
-			default:
-				console.log(wasteTypeNormalized);
-				iconName = 'fa-question'; // Default icon if no match is found
-		}
-	
-		let icon = document.createElement("i");
-		icon.className += `fa ${iconName} icon`;
-		return icon;
-	},
+getIcon: function(wasteType) {
+  const wasteTypeNormalized = wasteType.toLowerCase().replace(/ /g, '-');
+  let iconURL;
+console.log(wasteType);
+  // Handle the special case for "mad-ogdrikkekartoner"
+  if (wasteTypeNormalized === 'mad--og-drikkekartoner') {
+    iconURL = 'https://www.kredslob.dk/assets/waste-pictograms/mad-ogdrikkekartoner.svg';
+  } else {
+    iconURL = `https://www.kredslob.dk/assets/waste-pictograms/${wasteTypeNormalized}.svg`;
+  }
+
+  let icon = document.createElement("img");
+  icon.src = iconURL;
+  icon.className += ' icon';
+
+  icon.onerror = function() {
+    // If there is an error loading the SVG, display the "fa-question" icon and set width to 100%
+    icon.src = ''; // Clear the previous source to prevent broken image icon
+    icon.className = 'fa fa-question icon'; // Use Font Awesome "fa-question" icon
+    icon.style.width = '100%'; // Set width to 100%
+  };
+
+  // Set the style to scale the SVG to 5%
+  icon.style.width = '5%';
+
+  return icon;
+},
 	
 
 	getDateString: function(date) {
