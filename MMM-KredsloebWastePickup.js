@@ -42,7 +42,7 @@ Module.register("MMM-KredsloebWastePickup", {
 
     getIcon: function(wasteType) {
         const wasteTypeNormalized = wasteType.toLowerCase().replace(/ /g, '-');
-        const BASE_URL = 'https://www.kredslob.dk/assets/waste-pictograms/';
+        const BASE_URL = 'https://www.kredslob.dk/ui/assets/waste-pictograms/';
         let iconURL = (wasteTypeNormalized === 'mad--og-drikkekartoner') 
             ? `${BASE_URL}mad-ogdrikkekartoner.svg` 
             : `${BASE_URL}${wasteTypeNormalized}.svg`;
