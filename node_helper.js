@@ -53,7 +53,8 @@ module.exports = NodeHelper.create({
 
     // Create the URL for fetching pickup dates
     async createPickupDatesUrl(address) {
-        const url = `https://api.dataforsyningen.dk/adresser?fuzzy=true&kommunekode=751&per_side=30&q=${address.replace(' ', '+')}`;
+        const encodedAddress = encodeURIComponent(address.toLowerCase()).replace(/%20/g, '+');
+        const url = `https://api.dataforsyningen.dk/adresser?q=${encodedAddress}*&per_side=100&kommunekode=751`;
         const jsonData = await this.fetchJsonFromUrl(url);
 
         if (jsonData && jsonData.length > 0) {
